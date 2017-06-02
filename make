@@ -1,1 +1,1 @@
-g++ -std=gnu++14 print/example.cpp -o example && example
+g++ -std=gnu++14 print/example.cpp print/logservice.cpp -o example && example
