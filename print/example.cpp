@@ -27,7 +27,7 @@ private:
 int main()
 {
 	auto logService = LogService();
-	logService.warn(1, 1.6d, "Hello");
+	logService.warn(1, 1.6, "Hello");
 	logService.debug("Here's a type: ", ExampleType());
 	return 0;
 }
