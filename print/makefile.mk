@@ -7,7 +7,7 @@ COMPILE_EXAMPLE = $(OBJS) $(CXX) example.cpp logservice.cpp $(LDFLAGS) -o exampl
 all: example
 
 run:
-	$(COMPILE_EXAMPLE) && example.exe
+	$(COMPILE_EXAMPLE) && ./example.exe
 
 example:
 	$(COMPILE_EXAMPLE)
