@@ -40,8 +40,4 @@ install:
 
 # command to run tests
 script: 
-  - cd tests
-  - cmake ./
   - make
-  - if [ "`echo $CXX`" == "g++" ]; then ./ftl_tests; fi
-

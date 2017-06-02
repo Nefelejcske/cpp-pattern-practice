@@ -1,0 +1,1 @@
+g++ -std=gnu++14 print/example.cpp -o example && example
