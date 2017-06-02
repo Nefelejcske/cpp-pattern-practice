@@ -3,8 +3,9 @@
 class LogService
 {
 public:
-	LogService();
-	LogService(std::ostream& stream);
+	
+	LogService(): stream_(std::cout){}
+	LogService(std::ostream& stream): stream_(stream){}
 
 	template<class ...Args>
 	void error(Args... args);
@@ -28,8 +29,6 @@ private:
 	void print(T head, Args... tail);
 };
 
-LogService::LogService(): stream_(std::cout){}
-LogService::LogService(std::ostream& stream): stream_(stream){}
 
 template<class ...Args>
 void LogService::error(Args... args)
