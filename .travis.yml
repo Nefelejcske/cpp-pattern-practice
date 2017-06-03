@@ -39,5 +39,5 @@ install:
 # command to run tests
 script: 
   - cd print
-  - if [ "$CXX" == "clang++"]; then make -f makefile.mk run
-  - if [ "$CXX" == "g++" ]; then make -f makefile.mk CXX=g++
+  - if [ "$CXX" == "clang++"]; then make -f makefile.mk run; fi
+  - if [ "$CXX" == "g++" ]; then make -f makefile.mk CXX=g++; fi
