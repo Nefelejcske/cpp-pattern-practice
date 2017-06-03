@@ -25,7 +25,7 @@ void callback(int value)
 int main(int argc, char const *argv[])
 {
 	auto logger = LogService();
-	logger.info("___________Starting___________");
+	logger.info("___________Starting Observable Example___________");
 	auto subject = new Subject<int>();
 	
 	subject->asObservable()
