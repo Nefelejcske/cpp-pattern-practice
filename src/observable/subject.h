@@ -65,9 +65,15 @@ int Subject<T>::subscribe(Fun callback)
 template<class T>
 void Subject<T>::unsubscribe(int index)
 {
-	auto subptr = subscriptions[index];
 	subscriptions
-		.erase(std::remove(subscriptions.begin(), subscriptions.end(), subptr), subscriptions.end());
+		.erase(
+			std::remove(
+				subscriptions.begin()
+				, subscriptions.end()
+				, subscriptions[index]
+			)
+			, subscriptions.end()
+		);
 }
 
 #endif
