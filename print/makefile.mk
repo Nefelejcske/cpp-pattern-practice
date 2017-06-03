@@ -1,5 +1,5 @@
 SRC = $(wildcard *.cpp)
-CXX = clang-3.5
+CXX = clang
 LDFLAGS=-g -std=c++14 -stdlib=libc++ -lstdc++
 
 COMPILE_EXAMPLE = $(OBJS) $(CXX) example.cpp logservice.cpp $(LDFLAGS) -o example.exe $(OBJS)
