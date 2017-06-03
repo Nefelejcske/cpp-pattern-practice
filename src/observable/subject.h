@@ -6,6 +6,7 @@
 #endif
 
 #include <memory>
+#include <algorithm>
 #include "observable.h"
 
 template<class T>
@@ -13,6 +14,7 @@ class Subject
 {
 public:
 	Subject();
+	Subject(Subject<T> const& subject);
 	virtual ~Subject(){}
 
 	void next(T const& nextValue);
@@ -27,6 +29,12 @@ private:
 
 template<typename T>
 Subject<T>::Subject(): observable(new Observable<T>(this))
+{}
+
+template<typename T>
+Subject<T>::Subject(Subject<T> const& subject): 
+	observable(new Observable<T>(this))
+	, subscriptions(subject.subscriptions)
 {}
 
 template<typename T>
@@ -58,7 +66,8 @@ template<class T>
 void Subject<T>::unsubscribe(int index)
 {
 	auto subptr = subscriptions[index];
-	subscriptions.erase(index);
+	subscriptions
+		.erase(std::remove(subscriptions.begin(), subscriptions.end(), subptr), subscriptions.end());
 }
 
 #endif

@@ -1,11 +1,3 @@
-# Observable 
-
-This is a basic implementation of the Observable pattern.
-
-## Usage
-### Example:
-```c++
-
 #include <iostream>
 #include "subject.h"
 #include "observable.h"
@@ -48,25 +40,3 @@ int main()
 	}
 	return 0;
 }
-
-```
-This code outputs:
-```
-
-Incementing value:0
-Listening to increment: 0
-Incementing value:1
-Listening to increment: 1
-Incementing value:2
-Listening to increment: 2
-Incementing value:3
-Listening to increment: 3
-Incementing value:4
-Listening to increment: 4
-Incementing value:5
-Incementing value:6
-Incementing value:7
-Incementing value:8
-Incementing value:9
-
-```

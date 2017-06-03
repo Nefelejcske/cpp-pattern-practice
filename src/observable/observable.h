@@ -17,12 +17,12 @@ class Observable
 {
 public:
 	Observable(Subject<T>* subject);
+	Observable(Observable const& observable);
 
 	template<class Fun> int subscribe(Fun callback);
 	void unsubscribe(int index);
 
 private:
-	std::vector<std::shared_ptr<ISubscription<T> > > subscriptions;
 	Subject<T>& subject_;
 
 	friend class Subject<T>;
@@ -30,8 +30,12 @@ private:
 
 template<class T>
 Observable<T>::Observable(Subject<T>* subject): 
-subscriptions()
-, subject_(*subject)
+	subject_(*subject)
+{}
+
+template<class T>
+Observable<T>::Observable(Observable const& observable): 
+	subject_(observable.subject_)
 {}
 
 template<class T>
