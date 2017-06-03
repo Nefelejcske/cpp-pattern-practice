@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
 	
 	subject->asObservable()
 		.subscribe([&](int value){
-			logger.info("Lambda win! ", value, '\n');
+			logger.info("Lambda win! ", value);
 		});
 	
 	auto subscriber = Subscriber(logger);
