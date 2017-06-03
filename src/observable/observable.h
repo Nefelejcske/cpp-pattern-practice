@@ -2,9 +2,7 @@
 #define OBSERVABLE_H
 
 #ifndef SUBJECT_H
-	template<class T> class  ISubscription;
-	template<class T, class Fun> class  Subscription;
-	template<class T> class  Observable;
+	template<class T> class Observable;
 #endif
 
 #include <vector>
@@ -24,8 +22,6 @@ public:
 
 private:
 	Subject<T>& subject_;
-
-	friend class Subject<T>;
 };
 
 template<class T>
