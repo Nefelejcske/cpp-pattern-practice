@@ -2,7 +2,7 @@
 #ifndef LOGSERVICE
 #define LOGSERVICE
 
-class LogService
+class LogService 
 {
 public:
 	LogService();
