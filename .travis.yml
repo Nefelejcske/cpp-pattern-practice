@@ -20,8 +20,8 @@ install:
   - if [ "$CXX" == "g++" ]; then sudo apt-get install -qq g++-4.8; fi
   - if [ "$CXX" == "g++" ]; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50; fi
 
-  # install clang-3.4 if CPP14==1
-  - if [ "$CXX" == "clang++" -a "$CPP14" == "0" ]; then sudo apt-get install --allow-unauthenticated -qq clang-3.3; fi
+  # install clang-3.5 if CPP14==1
+  - if [ "$CXX" == "clang++" -a "$CPP14" == "0" ]; then sudo apt-get install --allow-unauthenticated -qq clang-3.5; fi
 
   - if [ "$CXX" == "clang++" ]; then cwd=$(pwd); fi
 
