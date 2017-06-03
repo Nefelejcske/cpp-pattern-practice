@@ -4,17 +4,10 @@ This is a basic implementation of the Observable pattern.
 
 ## Usage
 ### Idea
-<ul>
-	<li>
-		__Subject__ lets _Observers_ listen to events.
-	</li>
-	<li>
-		__Observable__ is a proxy that can be exposed to listeners without exposing the rest of the __Subject__'s API (aka. next()).
-	</li>
-	<li>
-		__Subscription__ lets us store callbacks.
-	</li>
-</ul>
+__Subject__ lets _Observers_ listen to events.<br>
+__Observable__ is a proxy that can be exposed to listeners without exposing the rest of the __Subject__'s API (aka. next()).<br>
+__Subscription__ lets us store callbacks.<br>
+
 ### Example
 ```cpp
 
