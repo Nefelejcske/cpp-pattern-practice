@@ -1,6 +1,6 @@
 #include <iostream>
 #include "command.h"
-#include "../print/logservice.h"
+#include "../logservice/logservice.h"
 
 class FirstCmd: public Command
 {
