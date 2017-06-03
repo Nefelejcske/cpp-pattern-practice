@@ -57,7 +57,7 @@ void LogService::info(Args... args)
 template<class T>
 void LogService::print(T item)
 {
-	stream_<<item<<'\n';
+	stream_<<item<<'\n\n';
 }
 
 template<class T, class ...Args>
