@@ -1,7 +1,5 @@
 #include <iostream>
-#include <string>
-
-#include "logservice.cpp"
+#include "logservice.h"
 
 class ExampleType
 {
@@ -21,12 +19,13 @@ public:
 private:
 	int a_;
 	float foo_;
-	std::string winnie_;  
+	std::string winnie_;
 };
 
 int main()
 {
 	auto logService = LogService();
+	logService.info("\n___________________Starting___________________");
 	logService.warn(1, 1.6, "Hello");
 	logService.debug("Here's a type: ", ExampleType());
 	return 0;

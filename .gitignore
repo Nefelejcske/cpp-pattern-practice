@@ -78,3 +78,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 print/run.sh
+*.sublime-build
+*.sublime-project
+template_adventures.sublime-workspace
