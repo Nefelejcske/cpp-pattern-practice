@@ -1,0 +1,72 @@
+# Observable 
+
+This is a basic implementation of the Observable pattern.
+
+## Usage
+### Example:
+```c++
+
+#include <iostream>
+#include "subject.h"
+#include "observable.h"
+
+class SomeInteresting
+{
+public:
+	SomeInteresting(): current_(0) {}
+
+	Observable<int> onIncrement()
+	{
+		return subject_.asObservable();
+	}
+
+	void increment()
+	{
+		std::cout<<"Incementing value:"<<current_<<"\n";
+		subject_.next(current_++);
+	}
+private:
+	Subject<int> subject_;
+	int current_;
+};
+
+int main()
+{
+	auto interesting = SomeInteresting();
+	int sub = interesting.onIncrement().subscribe([](int value){std::cout<<"Listening to increment: "<<value<<'\n';});
+	
+	for (int i = 0; i < 5; ++i)
+	{
+		interesting.increment();
+	}
+
+	interesting.onIncrement().unsubscribe(sub);
+	
+	for (int i = 0; i < 5; ++i)
+	{
+		interesting.increment();
+	}
+	return 0;
+}
+
+```
+This code outputs:
+```
+
+Incementing value:0
+Listening to increment: 0
+Incementing value:1
+Listening to increment: 1
+Incementing value:2
+Listening to increment: 2
+Incementing value:3
+Listening to increment: 3
+Incementing value:4
+Listening to increment: 4
+Incementing value:5
+Incementing value:6
+Incementing value:7
+Incementing value:8
+Incementing value:9
+
+```
