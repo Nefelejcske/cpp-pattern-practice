@@ -3,8 +3,20 @@
 This is a basic implementation of the Observable pattern.
 
 ## Usage
-### Example:
-```c++
+### Idea
+<ul>
+	<li>
+		__Subject__ lets _Observers_ listen to events.
+	</li>
+	<li>
+		__Observable__ is a proxy that can be exposed to listeners without exposing the rest of the __Subject__'s API (aka. next()).
+	</li>
+	<li>
+		__Subscription__ lets us store callbacks.
+	</li>
+</ul>
+### Example
+```cpp
 
 #include <iostream>
 #include "subject.h"
