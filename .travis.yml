@@ -40,4 +40,4 @@ install:
 script: 
   - cd print
   - if [ "$CXX" == "clang++"]; then make -f makefile.mk run; fi
-  - if [ "$CXX" == "g++" ]; then make -f makefile.mk CXX=g++ LDFLAGS=-g -std=c++1y; fi
+  - if [ "$CXX" == "g++" ]; then make -f makefile.mk CXX=g++ LDFLAGS="-g -std=c++1y"; fi
