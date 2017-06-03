@@ -5,9 +5,7 @@
 class FirstCmd: public Command
 {
 public:
-	FirstCmd(LogService& logService):
-		logService_(logService)
-	{}
+	FirstCmd(LogService& logService): logService_(logService){}
 
 	virtual void execute()
 	{
@@ -21,9 +19,7 @@ private:
 class SecondCmd: public Command
 {
 public:
-	SecondCmd(LogService& logService):
-		logService_(logService)
-	{}
+	SecondCmd(LogService& logService): logService_(logService){}
 
 	virtual void execute()
 	{
@@ -37,9 +33,7 @@ private:
 class ThirdCmd: public Command
 {
 public:
-	ThirdCmd(LogService& logService):
-		logService_(logService)
-	{}
+	ThirdCmd(LogService& logService): logService_(logService){}
 
 	virtual void execute()
 	{
