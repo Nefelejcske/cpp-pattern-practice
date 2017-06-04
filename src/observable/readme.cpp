@@ -1,6 +1,5 @@
 #include <iostream>
-#include "subject.h"
-#include "observable.h"
+#include "core/subject.h"
 
 class SomeInteresting
 {
