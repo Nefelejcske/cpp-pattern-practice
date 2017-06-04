@@ -11,10 +11,8 @@ __*Subject callbacks*__ work with both _lambdas_, _function pointers_ and _funct
 
 ### Example
 ```cpp
-
 #include <iostream>
-#include "subject.h"
-#include "observable.h"
+#include "core/subject.h"
 
 class SomeInteresting
 {
@@ -39,8 +37,7 @@ private:
 int main()
 {
 	auto interesting = SomeInteresting();
-	int sub = interesting
-		.onIncrement()
+	int sub = interesting.onIncrement()
 		.subscribe([](int value){
 			std::cout<<"Listening to increment: "<<value<<'\n';
 		});
