@@ -6,8 +6,8 @@ This is a basic implementation of the Observable pattern.
 ### Idea
 __Subject__ lets _Observers_ listen to events.<br>
 __Observable__ is a proxy that can be exposed to listeners without exposing the rest of the __Subject__'s API (aka. next()).<br>
-__Subscription__ lets us store callbacks.<br>
-__Subject__ _callbacks_ work with both _lambda_-s, _function pointer_-s and _functor_-s.
+__Subscription__ lets us store callbacks.<br><br>
+__Subject__ _callbacks_ work with both _lambdas_, _function pointers_ and _functors_.
 
 ### Example
 ```cpp
