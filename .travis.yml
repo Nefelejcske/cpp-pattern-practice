@@ -40,3 +40,6 @@ install:
 script: 
   - if [ "$CXX" == "clang++" ]; then make -f makefile.mk all; fi
   - if [ "$CXX" == "g++" ]; then make -f makefile.mk all CXX=g++ LDFLAGS="\"-g -std=c++1y\""; fi
+
+notifications:
+  slack: frenetiq:DQz0FZtCpcnrHkxQfEUNhdWI
