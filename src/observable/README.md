@@ -37,7 +37,8 @@ private:
 int main()
 {
 	auto interesting = SomeInteresting();
-	int sub = interesting.onIncrement()
+	int sub = interesting
+		.onIncrement()
 		.subscribe([](int value){
 			std::cout<<"Listening to increment: "<<value<<'\n';
 		});
