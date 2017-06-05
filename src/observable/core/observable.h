@@ -16,6 +16,7 @@ class Observable
 public:
 	Observable(Subject<T>* subject);
 	Observable(Observable const& observable);
+	virtual ~Observable(){}
 
 	template<class Fun> int subscribe(Fun callback);
 	void unsubscribe(int index);

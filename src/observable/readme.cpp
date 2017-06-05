@@ -24,19 +24,20 @@ private:
 int main()
 {
 	auto interesting = SomeInteresting();
-	int sub = interesting.onIncrement()
+	int sub = interesting
+		.onIncrement()
 		.subscribe([](int value){
 			std::cout<<"Listening to increment: "<<value<<'\n';
 		});
 	
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		interesting.increment();
 	}
 
 	interesting.onIncrement().unsubscribe(sub);
 	
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
 		interesting.increment();
 	}

@@ -88,7 +88,7 @@ int main(int argc, char const *argv[])
 	logService.info("\n_____________Starting Command Example_____________");
 	auto actor = SomeActor(logService);
 	logService.setLineEnding("\n");
-	for(int i=0; i<10; ++i)
+	for(int i=0; i<5; ++i)
 	{
 		logService.debug("command:",i);
 		auto cmd = actor.getCommand();
