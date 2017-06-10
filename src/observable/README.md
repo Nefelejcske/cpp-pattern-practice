@@ -13,11 +13,12 @@ __*Subject callbacks*__ work with both _lambdas_, _function pointers_ and _funct
 ```cpp
 #include <iostream>
 #include "core/subject.h"
+#include "../logservice/logservice.h"
 
 class SomeInteresting
 {
 public:
-	SomeInteresting(): current_(0) {}
+	SomeInteresting(LogService& ls): logService_(ls), current_(0) {}
 
 	Observable<int> onIncrement()
 	{
@@ -26,55 +27,47 @@ public:
 
 	void increment()
 	{
-		std::cout<<"Incementing value:"<<current_<<"\n";
+		logService_.info("Incrementing value", current_);
 		subject_.next(current_++);
 	}
 private:
 	Subject<int> subject_;
 	int current_;
+	LogService& logService_;
 };
 
 int main()
 {
-	auto interesting = SomeInteresting();
+	auto logService = LogService();
+	logService.info("\n_____________Starting Observer Example_____________");
+	logService.setLineEnding("\n");
+
+	auto interesting = SomeInteresting(logService);
 	int sub = interesting
 		.onIncrement()
-		.subscribe([](int value){
-			std::cout<<"Listening to increment: "<<value<<'\n';
+		.subscribe([&](int value){
+			logService.info("Listening to increment: ", value);
 		});
 	
-	for (int i = 0; i < 5; ++i)
-	{
-		interesting.increment();
-	}
-
+	for (int i = 0; i < 2; ++i) interesting.increment();
 	interesting.onIncrement().unsubscribe(sub);
-	
-	for (int i = 0; i < 5; ++i)
-	{
-		interesting.increment();
-	}
+	for (int i = 0; i < 2; ++i) interesting.increment();
+
 	return 0;
 }
+
 
 ```
 This code outputs:
 ```
+Info:
+_____________Starting Observer Example_____________
 
-Incementing value:0
-Listening to increment: 0
-Incementing value:1
-Listening to increment: 1
-Incementing value:2
-Listening to increment: 2
-Incementing value:3
-Listening to increment: 3
-Incementing value:4
-Listening to increment: 4
-Incementing value:5
-Incementing value:6
-Incementing value:7
-Incementing value:8
-Incementing value:9
+Info:    Incrementing value 0
+Info:    Listening to increment:  0
+Info:    Incrementing value 1
+Info:    Listening to increment:  1
+Info:    Incrementing value 2
+Info:    Incrementing value 3
 
 ```
