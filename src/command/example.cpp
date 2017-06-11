@@ -84,7 +84,7 @@ private:
 
 int main(int argc, char const *argv[])
 {
-	auto logService = LogService();
+	LogService logService {};
 	logService.info("\n_____________Starting Command Example_____________");
 	auto actor = SomeActor(logService);
 	logService.setLineEnding("\n");

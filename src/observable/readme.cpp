@@ -25,7 +25,7 @@ private:
 
 int main()
 {
-	auto logService = LogService();
+	LogService logService {};
 	logService.info("\n_____________Starting Observer Example_____________");
 	logService.setLineEnding("\n");
 
