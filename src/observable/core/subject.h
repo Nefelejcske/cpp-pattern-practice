@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <algorithm>
+#include <map>
 #include "observable.h"
 
 template<class T>
@@ -23,18 +24,20 @@ public:
 	template<class Fun> int subscribe(Fun callback);
 	void unsubscribe(int index);
 private:
-	std::vector<std::shared_ptr<ISubscription<T> > > subscriptions;
+	std::map<int, std::shared_ptr<ISubscription<T> > > subscriptions;
 	std::unique_ptr<Observable<T> > observable;
+	unsigned nextSub;
 };
 
 template<typename T>
-Subject<T>::Subject(): observable(new Observable<T>(this))
+Subject<T>::Subject(): observable(new Observable<T>(this)), nextSub(0)
 {}
 
 template<typename T>
 Subject<T>::Subject(Subject<T> const& subject): 
 	observable(new Observable<T>(this))
 	, subscriptions(subject.subscriptions)
+	, nextSub(0)
 {}
 
 template<typename T>
@@ -42,7 +45,7 @@ void Subject<T>::next(T const& nextValue)
 {
 	for(auto sub : subscriptions)
 	{
-		(*sub)(nextValue);
+		(*(sub.second))(nextValue);
 	}
 }
 
@@ -57,23 +60,14 @@ template<class Fun>
 int Subject<T>::subscribe(Fun callback)
 {
 	auto ptr = std::make_shared<Subscription<T, Fun> >(callback);
-	int result = subscriptions.size();
-	subscriptions.push_back(ptr);
-	return result;
+	subscriptions[nextSub] = ptr;
+	return nextSub++;
 }
 
 template<class T>
 void Subject<T>::unsubscribe(int index)
 {
-	subscriptions
-		.erase(
-			std::remove(
-				subscriptions.begin()
-				, subscriptions.end()
-				, subscriptions[index]
-			)
-			, subscriptions.end()
-		);
+	subscriptions.erase(index);
 }
 
 #endif
