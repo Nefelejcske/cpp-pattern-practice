@@ -19,10 +19,10 @@ public:
 	template<class ...Args>	void warn(Args const& ... args);
 	template<class ...Args>	void error(Args const& ... args);
 private:
-	std::ostream& stream_;
-	std::string delimeter_;
-	std::string lineend_;
-	std::mutex printMutex_;
+	std::ostream& stream;
+	std::string delimeter;
+	std::string lineend;
+	std::mutex printMutex;
 	
 	template<class T> void print(T const& item);
 	template<class T, class ...Args> void print(T const& head, Args const& ... tail);
@@ -56,20 +56,20 @@ void LogService::info(Args const& ... args)
 template<class T>
 void LogService::print(T const& item)
 {
-	stream_<<item<<lineend_;
+	stream<<item<<lineend;
 }
 
 template<class T, class ...Args>
 void LogService::print(T const& head,Args const& ... tail)
 {
-	stream_<<head<<delimeter_;
+	stream<<head<<delimeter;
 	print(tail...);
 }
 
 template<class ...Args>
 void LogService::startPrint(Args const& ...tail)
 {
-	std::lock_guard<std::mutex> lock (printMutex_);
+	std::lock_guard<std::mutex> lock (printMutex);
 	print(tail...);
 }
 

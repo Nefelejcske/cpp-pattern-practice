@@ -2,27 +2,27 @@
 #include "logservice.h"
 
 LogService::LogService(): 
-	stream_(std::cout)
-	, delimeter_(" ")
-	, lineend_("\n\n")
+	stream(std::cout)
+	, delimeter(" ")
+	, lineend("\n\n")
 {}
 LogService::LogService(std::ostream& stream): 
-	stream_(stream)
-	, delimeter_(" ")
-	, lineend_("\n\n")
+	stream(stream)
+	, delimeter(" ")
+	, lineend("\n\n")
 {}
 LogService::LogService(std::ostream& stream, const std::string& delimeter, const std::string& lineend): 
-	stream_(stream)
-	, delimeter_(delimeter)
-	, lineend_(lineend)
+	stream(stream)
+	, delimeter(delimeter)
+	, lineend(lineend)
 {}
 
 void LogService::setDelimeter(const std::string& delimeter)
 {
-	delimeter_ = delimeter;
+	this->delimeter = delimeter;
 }
 
 void LogService::setLineEnding(const std::string& lineend)
 {
-	lineend_ = lineend;
+	this->lineend = lineend;
 }

@@ -13,6 +13,7 @@ namespace Job
 		SyncResource(T const& resource): 
 			resource(std::make_unique<T>(resource)) 
 		{}
+		
 		SyncResource(SyncResource& copy) = delete;
 
 		virtual ~SyncResource(){}
