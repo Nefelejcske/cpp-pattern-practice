@@ -21,13 +21,13 @@ public:
 		return *this;
 	}
 
-	bool operator==(DeadBeef const& rhs)
+	bool operator==(DeadBeef const& rhs) const
 	{
 		return id == rhs.id;
 	}
 
-	unsigned id;
 private:
+	unsigned id;
 	static unsigned nextId;
 	LogService log;
 };
@@ -39,16 +39,29 @@ int main(int argc, char const *argv[])
 	LogService log {};
 	log.info("\n_________________Starting Object Pool Example_________________");
 	
-	ObjectPool<DeadBeef, 20000> pool {};
+	constexpr int SIZE = 80000;
+	constexpr int ITERATIONS = 1;
+
+	ObjectPool<DeadBeef, SIZE> pool {};
 
 	std::vector<DeadBeef> items {};
-	for (int i = 0; i < 20000; ++i)
+	for (int i = 0; i < ITERATIONS; ++i)
 	{
-		items.push_back(pool.create());
+		log.info("Items Test", i);
+		items = {};
+
+		log.info("Add Items Test", i);
+		for (int i = 0; i < SIZE; ++i)
+		{
+			items.push_back(pool.create());
+		}
+		log.info("Remove Items Test", i);
+		for (auto i = items.begin(); i != items.end(); ++i)
+		{
+			pool.remove(*i);
+		}
+		log.info("Items Test", i, "Done");
 	}
-	for (auto i = items.begin(); i != items.end(); ++i)
-	{
-		pool.remove(*i);
-	}
+
 	return 0;
 }
