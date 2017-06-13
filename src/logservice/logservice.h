@@ -8,6 +8,7 @@ class LogService
 {
 public:
 	LogService();
+	LogService(LogService& logService);
 	LogService(std::ostream& stream);
 	LogService(std::ostream& stream, const std::string& delimeter, const std::string& lineend);
 

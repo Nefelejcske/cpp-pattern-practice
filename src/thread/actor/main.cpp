@@ -51,7 +51,7 @@ public:
 private:
 	static int index;
 
-	LogService& logService;	
+	LogService logService;	
 	std::string name;
 	bool isSlapped[2];
 	std::shared_ptr<Comedian> target;
@@ -74,7 +74,7 @@ std::vector<std::shared_ptr<Comedian> > setStage(LogService& log)
 	comedian1->slap();
 	comedian1->swap();
 
-	return std::vector<std::shared_ptr<Comedian> > {comedian1, comedian2, comedian3, comedian4};
+	return { comedian1, comedian2, comedian3, comedian4 };
 }
 
 void updateStage(std::vector<std::shared_ptr<Comedian> > comedians)
