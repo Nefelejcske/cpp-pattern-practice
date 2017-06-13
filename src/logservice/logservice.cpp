@@ -6,6 +6,11 @@ LogService::LogService():
 	, delimeter(" ")
 	, lineend("\n\n")
 {}
+LogService::LogService(LogService& logservice): 
+	stream(logservice.stream)
+	, delimeter(logservice.delimeter)
+	, lineend(logservice.lineend)
+{}
 LogService::LogService(std::ostream& stream): 
 	stream(stream)
 	, delimeter(" ")
