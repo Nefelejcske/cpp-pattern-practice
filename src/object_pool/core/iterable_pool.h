@@ -20,8 +20,10 @@ public:
 
 	T& create();
 	bool remove(T& item);
+	bool canCreate();
 
 	template<typename Fun> void iterateActive(Fun&& callback);
+	template<typename Fun> void iterateAll(Fun&& callback);
 protected:
 	std::array<PoolItem<T, size> , size> pool;
 	unsigned next;
@@ -56,6 +58,12 @@ bool IterablePool<T, size>::remove(T& item)
 }
 
 template<class T, unsigned size>
+bool IterablePool<T, size>::canCreate()
+{
+	return next < size;
+}
+
+template<class T, unsigned size>
 void IterablePool<T, size>::swapItems(unsigned index1, unsigned index2)
 {
 	assert(index1 < size);
@@ -71,6 +79,13 @@ template<typename Fun>
 void IterablePool<T, size>::iterateActive(Fun&& callback)
 {
 	for (int i = 0; i < next; ++i) callback(pool[i].getItem());
+}
+
+template<class T, unsigned size>
+template<typename Fun> 
+void IterablePool<T, size>::iterateAll(Fun&& callback)
+{
+	for (auto & i = pool.begin(); i != pool.end(); ++i) callback((*i).getItem());
 }
 
 #endif
