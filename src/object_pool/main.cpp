@@ -49,17 +49,17 @@ int main(int argc, char const *argv[])
 	log.info("\n_________________Starting Object Pool Example_________________");
 	
 	constexpr int SIZE = 10;
-	constexpr int ITERATIONS = 5;
+	constexpr int ITERATIONS = 3;
 
 	IterablePool<DeadBeef, SIZE> pool {};
 
 	std::vector<DeadBeef> items {};
 	for (int w = 1; w <= ITERATIONS; ++w)
 	{
-		log.info("_______________Items Test", w, "_______________");
+		log.info("_______________Items Test#", w, "_______________");
 		items = {};
 
-		log.info("Add Items Test", w);
+		log.info("Add Items Test#", w);
 		for (int i = 0; i < SIZE; ++i)
 		{
 			auto & beef = pool.create();
@@ -67,18 +67,19 @@ int main(int argc, char const *argv[])
 			items.push_back(beef);
 		}
 
-		log.info("Iterate Active Items Test", w);
+		log.info("Iterate Active Items Test#", w);
 		pool.iterateActive([&](auto & beef){
 			log.debug("Calling beef: ", beef);
 		});
 
-		log.info("Remove Items Test", w);
+		log.info("Remove Items Test#", w);
 		for (auto i = items.begin(); i != items.end(); ++i)
 		{
 			log.debug("Removing beef: ", *i);
 			pool.remove(*i);
 		}
-		log.info("_______________Items Test", w, "Done_______________");
+
+		log.info("_______________Items Test#", w, "Done_______________");
 	}
 
 	return 0;
